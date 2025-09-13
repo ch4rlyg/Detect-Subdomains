@@ -27,7 +27,7 @@ jobs:
       - name: Run subfinder
         run: |
           sudo go install -v github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest
-          subfinder -d ${{ env.DOMAIN_VALUE }} -all -recursive -o /tmp/subfinder.txt
+          $HOME/go/bin/subfinder -d ${{ env.DOMAIN_VALUE }} -all -recursive -o /tmp/subfinder.txt
 
       - name: Send data
         run: |
