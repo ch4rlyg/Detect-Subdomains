@@ -26,8 +26,9 @@ jobs:
       # Runs a single command using the runners shell
       - name: Run subfinder
         run: |
-          sudo go install -v github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest
-          $HOME/go/bin/subfinder -d ${{ env.DOMAIN_VALUE }} -all -recursive -o /tmp/subfinder.txt
+          curl -s -k -X GET https://github.com/projectdiscovery/subfinder/releases/download/v2.8.0/subfinder_2.8.0_linux_amd64.zip > /tmp
+          unzip /tmp/subfinder_2.8.0_linux_amd64.zip
+          /tmp/subfinder -silent -d ${{ env.DOMAIN_VALUE }} -all -recursive -o /tmp/subfinder.txt
 
       - name: Send data
         run: |
