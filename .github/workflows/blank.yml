@@ -15,6 +15,7 @@ jobs:
     env:
       URL_WEBHOOK: ${{ secrets.URL_WEBHOOK }}
       DOMAIN_VALUE: ${{ vars.DOMAIN_VALUE }}
+      BINARY_SUBFINDER: ${{ vars.BINARY_SUBFINDER }}
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -26,11 +27,11 @@ jobs:
       # Runs a single command using the runners shell
       - name: Run subfinder
         run: |
-          wget -O /tmp/subfinder_2.8.0_linux_amd64.zip https://github.com/projectdiscovery/subfinder/releases/download/v2.8.0/subfinder_2.8.0_linux_amd64.zip
+          wget -O /tmp/subfinder_2.8.0_linux_amd64.zip ${{ env.BINARY_SUBFINDER }}
           unzip /tmp/subfinder_2.8.0_linux_amd64.zip -d /tmp
           /tmp/subfinder -silent -d ${{ env.DOMAIN_VALUE }} -all -recursive -o /tmp/subfinder.txt
 
       - name: Send data
         run: |
           sudo apt install curl  
-          curl -s -k -X POST ${{ env.URL_WEBHOOK }} -H "Content-Type: application/json" --data "{\"list_subdomains_target\":\"nasa.gov\"}"
+          curl -s -k -X POST "${{ env.URL_WEBHOOK }}" -H "Content-Type: application/json" --data "{\"list_subdomains_target\":\"$(< /tmp/subfinder.txt)\"}"
