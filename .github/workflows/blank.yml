@@ -27,7 +27,7 @@ jobs:
       - name: Run subfinder
         run: |
           wget -O /tmp/subfinder_2.8.0_linux_amd64.zip https://github.com/projectdiscovery/subfinder/releases/download/v2.8.0/subfinder_2.8.0_linux_amd64.zip
-          unzip /tmp/subfinder_2.8.0_linux_amd64.zip
+          unzip /tmp/subfinder_2.8.0_linux_amd64.zip -d /tmp
           /tmp/subfinder -silent -d ${{ env.DOMAIN_VALUE }} -all -recursive -o /tmp/subfinder.txt
 
       - name: Send data
