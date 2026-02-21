@@ -25,7 +25,7 @@ jobs:
         run: |
           wget -O /tmp/assetfinder.tgz ${{ env.BINARY_ASSETFINDER }}
           tar -xzf /tmp/assetfinder.tgz -C /tmp
-          /tmp/assetfinder --subs-only -d ${{ env.DOMAIN_VALUE }} > /tmp/assetfinder.txt
+          /tmp/assetfinder --subs-only ${{ env.DOMAIN_VALUE }} > /tmp/assetfinder.txt
 
       - name: Upload results
         uses: actions/upload-artifact@v4
