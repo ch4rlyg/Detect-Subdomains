@@ -3,6 +3,8 @@
 name: Subdomain Scanner - Passive - Assetfinder
 
 on:
+    repository_dispatch:
+      types: [ "run-from-n8n"]
     push:
         branches: [ "main" ]
 
