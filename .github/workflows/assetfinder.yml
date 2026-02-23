@@ -14,9 +14,10 @@ jobs:
     env:
         BINARY_ASSETFINDER: "https://github.com/tomnomnom/assetfinder/releases/download/v0.1.1/assetfinder-linux-amd64-0.1.1.tgz"
         DOMAIN_VALUE: "yape.com.pe"
-        URL_WEBHOOK: ${{ secrets.URL_WEBHOOK }}
+        URL_WEBHOOK: ${{ secrets.WEBHOOKN8N_URL }}
         USER_WEBHOOK: ${{ secrets.WEBHOOKN8N_USER }}
         PASSWORD_WEBHOOK: ${{ secrets.WEBHOOKN8N_PASSWORD }}
+
 
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
