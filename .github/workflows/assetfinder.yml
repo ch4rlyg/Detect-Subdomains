@@ -38,6 +38,7 @@ jobs:
       #  with:
       #    name: assetfinder-results
       #    path: /tmp/assetfinder.txt
+      
       - name: Send results to n8n webhook (Basic Auth + file upload)
         run: |
           curl -X POST "${{ env.URL_WEBHOOK }}" \
