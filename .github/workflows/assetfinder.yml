@@ -3,8 +3,7 @@
 name: Subdomain Scanner - Passive - Assetfinder
 
 on:
-    repository_dispatch:
-        types: [ "run_scan" ]
+    workflow_dispatch:
     push:
         branches: [ "main" ]
 
