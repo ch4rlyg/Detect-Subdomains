@@ -4,6 +4,10 @@ name: Subdomain Scanner - Passive - Assetfinder
 
 on:
     workflow_dispatch:
+        inputs:
+            resumeUrl:
+                required: false
+                type: string
     push:
         branches: [ "main" ]
 
@@ -38,7 +42,6 @@ jobs:
       #  with:
       #    name: assetfinder-results
       #    path: /tmp/assetfinder.txt
-      
       - name: Send results to n8n webhook (Basic Auth + file upload)
         run: |
           curl -X POST "${{ env.URL_WEBHOOK }}" \
