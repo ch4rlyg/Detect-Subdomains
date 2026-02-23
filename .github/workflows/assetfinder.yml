@@ -41,4 +41,5 @@ jobs:
         run: |
           curl -X POST "${{ env.URL_WEBHOOK }}" \
             -u "${{ env.USER_WEBHOOK }}:${{ env.PASSWORD_WEBHOOK }}" \
-            -F "file=@/tmp/assetfinder.txt"
+            -H "Content-Type: application/json" \
+            -d "{\"results\":\"$(base64 -w 0 /tmp/assetfinder.txt)\"}"
