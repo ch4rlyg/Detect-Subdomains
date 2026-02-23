@@ -44,6 +44,6 @@ jobs:
       #    path: /tmp/assetfinder.txt
       - name: Send results to n8n webhook (Basic Auth + file upload)
         run: |
-          curl -X POST "${{ env.URL_WEBHOOK }}" \
+          curl -X POST "${{ github.event.inputs.resumeUrl }}" \
             -u "${{ env.USER_WEBHOOK }}:${{ env.PASSWORD_WEBHOOK }}" \
             -F "file=@/tmp/assetfinder.txt"
