@@ -18,7 +18,7 @@ jobs:
     env:
         BINARY_ASSETFINDER: "https://github.com/tomnomnom/assetfinder/releases/download/v0.1.1/assetfinder-linux-amd64-0.1.1.tgz"
         DOMAIN_VALUE: "yape.com.pe"
-        URL_WEBHOOK: "https://a13a0xc4rlgy1.app.n8n.cloud/webhook-waiting/195"
+        URL_WEBHOOK: ${{ secrets.WEBHOOKN8N_URL }}
         USER_WEBHOOK: ${{ secrets.WEBHOOKN8N_USER }}
         PASSWORD_WEBHOOK: ${{ secrets.WEBHOOKN8N_PASSWORD }}
 
