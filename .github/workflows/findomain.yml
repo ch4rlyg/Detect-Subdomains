@@ -29,7 +29,7 @@ jobs:
             rm results/assetfinder.txt
             echo "Old file deleted"
           else
-            echo "File does not exist"
+            echo "File does not exist "
           fi
 
       - name: Save results into repo
