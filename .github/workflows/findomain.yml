@@ -1,0 +1,29 @@
+name: Subdomain Scanner - Passive - Assetfinder
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    env:
+      BINARY_FINDOMAIN: "https://github.com/Findomain/Findomain/releases/download/10.0.1/findomain-linux.zip"
+      DOMAIN_VALUE: "yape.com.pe"
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run findomain
+        run: |
+          wget -O /tmp/findomain.zip ${{ env.BINARY_FINDOMAIN }}
+          unzip /tmp/findomain.zip -d /tmp
+          /tmp/findomain -t ${{ env.DOMAIN_VALUE }} > /tmp/findomain.txt
+
+      - name: Upload results as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: findomain-results
+          path: /tmp/findomain.txt
