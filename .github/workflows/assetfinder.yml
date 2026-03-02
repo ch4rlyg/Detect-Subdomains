@@ -60,6 +60,7 @@ jobs:
         run: |
           mkdir -p results
           cp /tmp/assetfinder.txt results/assetfinder.txt
+          git pull --rebase origin main
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
 
