@@ -22,9 +22,9 @@ jobs:
           unzip /tmp/findomain.zip -d /tmp
           /tmp/findomain -q -t ${{ env.DOMAIN_VALUE }} > /tmp/findomain.txt
         
-      - name: Pull changes
-        run: |
-          git pull --rebase origin main
+      #- name: Pull changes
+      #  run: |
+      #    git pull --rebase origin main
 
       - name: Delete old file if exists
         run: |
