@@ -35,10 +35,10 @@ jobs:
       - name: Save results into repo
         run: |
           mkdir -p results
-          cp /tmp/findomain.txt results/assetfinder.txt
+          cp /tmp/findomain.txt results/findomain.txt
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
 
-          git add results/assetfinder.txt
+          git add results/findomain.txt
           git commit -m "Update subdomains results"
           git push
