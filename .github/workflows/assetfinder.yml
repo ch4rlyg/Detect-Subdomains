@@ -42,8 +42,27 @@ jobs:
       #  with:
       #    name: assetfinder-results
       #    path: /tmp/assetfinder.txt
-      - name: Send results to n8n webhook (Basic Auth + file upload)
+      #- name: Send results to n8n webhook (Basic Auth + file upload)
+      #  run: |
+      #    curl -k -X POST "${{ env.URL_WEBHOOK }}" \
+      #      -u "${{ env.USER_WEBHOOK }}:${{ env.PASSWORD_WEBHOOK }}" \
+      #      -F "file=@/tmp/assetfinder.txt"
+      - name: Delete old file if exists
         run: |
-          curl -k -X POST "${{ env.URL_WEBHOOK }}" \
-            -u "${{ env.USER_WEBHOOK }}:${{ env.PASSWORD_WEBHOOK }}" \
-            -F "file=@/tmp/assetfinder.txt"
+          if [ -f results/assetfinder.txt ]; then
+            rm results/assetfinder.txt
+            echo "Old file deleted"
+          else
+            echo "File does not exist "
+          fi
+
+      - name: Save results into repo
+        run: |
+          mkdir -p results
+          cp /tmp/assetfinder.txt results/assetfinder.txt
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+
+          git add results/assetfinder.txt
+          git commit -m "Update subdomains results"
+          git push
