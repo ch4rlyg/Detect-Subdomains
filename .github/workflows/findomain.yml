@@ -1,4 +1,4 @@
-name: Subdomain Scanner - Passive - Assetfinder
+name: Subdomain Scanner - Passive - Findomain
 
 on:
   workflow_dispatch:
