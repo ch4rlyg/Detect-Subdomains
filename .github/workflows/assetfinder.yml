@@ -50,22 +50,22 @@ jobs:
       #    curl -k -X POST "${{ env.URL_WEBHOOK }}" \
       #      -u "${{ env.USER_WEBHOOK }}:${{ env.PASSWORD_WEBHOOK }}" \
       #      -F "file=@/tmp/assetfinder.txt"
-      - name: Delete old file if exists
-        run: |
-          if [ -f results/assetfinder.txt ]; then
-            rm -rf results/assetfinder.txt
-            echo "Old file deleted"
-          else
-            echo "File does not exist"
-          fi
 
       - name: Save results into repo
         run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # Trae cambios del remoto primero (evita "fetch first")
+          git pull --rebase origin main
+
+          # Guarda/actualiza el txt
           mkdir -p results
           cp /tmp/assetfinder.txt results/assetfinder.txt
-          git config user.name "github-actions"
-          git config user.email "github-actions@github.com"
 
+          # Commit solo si hay cambios (evita "nothing to commit")
           git add results/assetfinder.txt
-          git commit -m "Update subdomains results"
-          git push
+          git diff --cached --quiet || git commit -m "Update subdomains results"
+
+          # Push
+          git push origin main
