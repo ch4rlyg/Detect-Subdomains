@@ -37,9 +37,9 @@ jobs:
           tar -xzf /tmp/assetfinder.tgz -C /tmp
           /tmp/assetfinder --subs-only ${{ env.DOMAIN_VALUE }} > /tmp/assetfinder.txt
         
-      - name: Pull changes
-        run: |
-          git pull --rebase origin main
+      #- name: Pull changes
+      #  run: |
+      #    git pull --rebase origin main
 
       # - name: Upload results
       #  uses: actions/upload-artifact@v4
