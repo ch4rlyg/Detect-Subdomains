@@ -20,7 +20,7 @@ jobs:
         run: |
           wget -O /tmp/findomain.zip ${{ env.BINARY_FINDOMAIN }}
           unzip /tmp/findomain.zip -d /tmp
-          /tmp/findomain -t ${{ env.DOMAIN_VALUE }} > /tmp/findomain.txt
+          /tmp/findomain -q -t ${{ env.DOMAIN_VALUE }} > /tmp/findomain.txt
 
       - name: Upload results as artifact
         uses: actions/upload-artifact@v4
