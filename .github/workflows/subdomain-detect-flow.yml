@@ -24,10 +24,15 @@ jobs:
                git config user.name "github-actions[bot]"
                git config user.email "github-actions[bot]@users.noreply.github.com"
                git pull --rebase origin main || true
-               git rm --cached results/subfinder.txt 2>/dev/null || true
-               git add results/subfinder.txt
-               git commit -m "Actualizar resultados de subfinder - $(date '+%Y-%m-%d %H:%M:%S')" || echo "No hay cambios"
-               git push origin main
+               mkdir -p results
+               if [ -s /tmp/subfinder.txt ]; then
+                 cp /tmp/subfinder.txt results/subfinder.txt
+                 git add results/subfinder.txt
+                 git commit -m "Actualizar resultados de subfinder - $(date '+%Y-%m-%d %H:%M:%S')" || echo "No hay cambios"
+                 git push origin main
+                 else
+                 echo "No subfinder output to save (empty or missing /tmp/subfinder.txt)"
+                fi
 
     Findomain:
         runs-on: ubuntu-latest
