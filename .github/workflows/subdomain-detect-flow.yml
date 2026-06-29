@@ -9,11 +9,6 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v4
-            - name: Install dependencies
-              run: |
-                apt-get update
-                apt-get install -y wget unzip
-
             - name: Download subfinder
               run: |
                 wget -O /tmp/subfinder_2.8.0_linux_amd64.zip https://github.com/projectdiscovery/subfinder/releases/download/v2.14.0/subfinder_2.14.0_linux_amd64.zip
