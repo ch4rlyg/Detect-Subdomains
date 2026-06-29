@@ -23,3 +23,15 @@ jobs:
             #  run: |
             #    sudo apt install curl  
             #    curl -s -k -X POST "${{ env.URL_WEBHOOK }}" -H "Content-Type: application/json" --data "{\"list_subdomains_target\":\"$(< /tmp/subfinder.txt)\"}"
+    Findomain:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - name: Download findomain
+              run: |
+                wget -O /tmp/findomain.zip https://github.com/Findomain/Findomain/releases/download/10.0.1/findomain-linux.zip
+                unzip /tmp/findomain.zip -d /tmp
+            - name: Run findomain
+              run: |
+                    /tmp/findomain -q -t ultraperu.com > /tmp/findomain.txt
+                    cat /tmp/findomain.txt
