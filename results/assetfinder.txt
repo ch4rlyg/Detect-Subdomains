@@ -1,3 +1,4 @@
+yape.com.pe
 app.yape.com.pe
 app.cert.yape.com.pe
 impyape.cert.yape.com.pe
@@ -18,4 +19,3 @@ stg.yape.com.pe
 www.yape.com.pe
 ye.yape.com.pe
 www.stg.yape.com.pe
-yape.com.pe
