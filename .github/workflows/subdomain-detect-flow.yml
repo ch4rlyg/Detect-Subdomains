@@ -142,7 +142,7 @@ jobs:
                 echo "📅 **Fecha:** $(date '+%Y-%m-%d %H:%M:%S')" >> $GITHUB_STEP_SUMMARY
                 echo "" >> $GITHUB_STEP_SUMMARY
                 
-                echo "## 📈 Cantidad : ${wc -l < ./combined/all_results_sorted.txt}" >> $GITHUB_STEP_SUMMARY
+                echo "## 📈 Cantidad : $(wc -l < ./combined/all_results_sorted.txt)" >> $GITHUB_STEP_SUMMARY
                 cat ./combined/all_results_sorted.txt >> $GITHUB_STEP_SUMMARY
                 echo "" >> $GITHUB_STEP_SUMMARY
                 echo "📁 **Resultados completos:**" >> $GITHUB_STEP_SUMMARY
