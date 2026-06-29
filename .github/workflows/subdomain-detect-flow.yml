@@ -1,0 +1,25 @@
+name: Detect Flow
+on:
+  workflow_dispatch:
+  push:
+    branches: [ "main" ]
+
+jobs:
+    Subfinder:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - name: Download subfinder
+              run: |
+                wget -O /tmp/subfinder_2.8.0_linux_amd64.zip https://github.com/projectdiscovery/subfinder/releases/download/v2.14.0/subfinder_2.14.0_linux_amd64.zip
+                unzip /tmp/subfinder_2.8.0_linux_amd64.zip -d /tmp
+
+            - name: Run subfinder
+              run: |
+                /tmp/subfinder -silent -d ultraperu.com -all -recursive -o /tmp/subfinder.txt
+                cat /tmp/subfinder.txt
+
+            #- name: Send data
+            #  run: |
+            #    sudo apt install curl  
+            #    curl -s -k -X POST "${{ env.URL_WEBHOOK }}" -H "Content-Type: application/json" --data "{\"list_subdomains_target\":\"$(< /tmp/subfinder.txt)\"}"
