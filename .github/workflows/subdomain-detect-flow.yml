@@ -35,3 +35,15 @@ jobs:
               run: |
                     /tmp/findomain -q -t ultraperu.com > /tmp/findomain.txt
                     cat /tmp/findomain.txt
+    Assetfinder:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - name: Download assetfinder
+              run: |
+                wget -O /tmp/assetfinder.tgz https://github.com/tomnomnom/assetfinder/releases/download/v0.1.1/assetfinder-linux-amd64-0.1.1.tgzz
+                tar -xzf /tmp/assetfinder.tgz -C /tmp
+            - name: Run assetfinder
+              run: |
+                /tmp/assetfinder --subs-only ultraperu.com > /tmp/assetfinder.txt
+                cat /tmp/assetfinder.txt
