@@ -29,6 +29,7 @@ jobs:
                  cp /tmp/subfinder.txt results/subfinder.txt
                  git add results/subfinder.txt
                  git commit -m "Actualizar resultados de subfinder - $(date '+%Y-%m-%d %H:%M:%S')" || echo "No hay cambios"
+                 git pull --rebase origin main
                  git push origin main
                  else
                  echo "No subfinder output to save (empty or missing /tmp/subfinder.txt)"
