@@ -85,7 +85,7 @@ jobs:
               uses: actions/download-artifact@v4
               with:
                 path: ./results
-                
+
             - name: List downloaded files
               run: |
                 echo "📂 Archivos descargados:"
@@ -131,7 +131,8 @@ jobs:
                   echo "⚠️ Assetfinder: No se encontraron resultados" >> ./combined/all_results.txt
                 fi
                 
-                echo "✅ Resultados combinados guardados en ./combined/all_results.txt"
+                cat ./combined/all_results.txt  | sort -u > ./combined/all_results_sorted.txt
+                echo "✅ Resultados combinados guardados en ./combined/all_results_sorted.txt"
 
             - name: Generate summary report
               run: |
@@ -141,32 +142,8 @@ jobs:
                 echo "📅 **Fecha:** $(date '+%Y-%m-%d %H:%M:%S')" >> $GITHUB_STEP_SUMMARY
                 echo "" >> $GITHUB_STEP_SUMMARY
                 
-                echo "## 📈 Resumen por herramienta" >> $GITHUB_STEP_SUMMARY
-                echo "" >> $GITHUB_STEP_SUMMARY
-                echo "| Herramienta | Subdominios | Estado |" >> $GITHUB_STEP_SUMMARY
-                echo "|------------|-------------|--------|" >> $GITHUB_STEP_SUMMARY
-                
-                if [ -f ./results/subfinder-results/subfinder.txt ]; then
-                  COUNT=$(wc -l < ./results/subfinder-results/subfinder.txt)
-                  echo "| Subfinder | $COUNT | ✅ Completado |" >> $GITHUB_STEP_SUMMARY
-                else
-                  echo "| Subfinder | - | ❌ Falló |" >> $GITHUB_STEP_SUMMARY
-                fi
-                
-                if [ -f ./results/findomain-results/findomain.txt ]; then
-                  COUNT=$(wc -l < ./results/findomain-results/findomain.txt)
-                  echo "| Findomain | $COUNT | ✅ Completado |" >> $GITHUB_STEP_SUMMARY
-                else
-                  echo "| Findomain | - | ❌ Falló |" >> $GITHUB_STEP_SUMMARY
-                fi
-                
-                if [ -f ./results/assetfinder-results/assetfinder.txt ]; then
-                  COUNT=$(wc -l < ./results/assetfinder-results/assetfinder.txt)
-                  echo "| Assetfinder | $COUNT | ✅ Completado |" >> $GITHUB_STEP_SUMMARY
-                else
-                  echo "| Assetfinder | - | ❌ Falló |" >> $GITHUB_STEP_SUMMARY
-                fi
-                
+                echo "## 📈 Cantidad : ${wc -l < ./combined/all_results_sorted.txt}" >> $GITHUB_STEP_SUMMARY
+                cat ./combined/all_results_sorted.txt >> $GITHUB_STEP_SUMMARY
                 echo "" >> $GITHUB_STEP_SUMMARY
                 echo "📁 **Resultados completos:**" >> $GITHUB_STEP_SUMMARY
                 echo "Descarga los artefactos desde este workflow." >> $GITHUB_STEP_SUMMARY
