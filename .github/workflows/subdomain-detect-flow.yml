@@ -41,7 +41,7 @@ jobs:
             - uses: actions/checkout@v4
             - name: Download assetfinder
               run: |
-                wget -O /tmp/assetfinder.tgz https://github.com/tomnomnom/assetfinder/releases/download/v0.1.1/assetfinder-linux-amd64-0.1.1.tgzz
+                wget -O /tmp/assetfinder.tgz https://github.com/tomnomnom/assetfinder/releases/download/v0.1.1/assetfinder-linux-amd64-0.1.1.tgz
                 tar -xzf /tmp/assetfinder.tgz -C /tmp
             - name: Run assetfinder
               run: |
