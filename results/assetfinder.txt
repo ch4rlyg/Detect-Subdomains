@@ -17,3 +17,5 @@ reca.yape.com.pe
 stg.yape.com.pe
 www.yape.com.pe
 ye.yape.com.pe
+www.stg.yape.com.pe
+yape.com.pe
