@@ -106,7 +106,6 @@ jobs:
                 
                 # Subfinder
                 if [ -f ./results/subfinder-results/subfinder.txt ]; then
-                  echo "## Subfinder ($(wc -l < ./results/subfinder-results/subfinder.txt) subdominios)" >> ./combined/all_results.txt
                   cat ./results/subfinder-results/subfinder.txt >> ./combined/all_results.txt
                   echo "" >> ./combined/all_results.txt
                 else
@@ -115,7 +114,6 @@ jobs:
                 
                 # Findomain
                 if [ -f ./results/findomain-results/findomain.txt ]; then
-                  echo "## Findomain ($(wc -l < ./results/findomain-results/findomain.txt) subdominios)" >> ./combined/all_results.txt
                   cat ./results/findomain-results/findomain.txt >> ./combined/all_results.txt
                   echo "" >> ./combined/all_results.txt
                 else
@@ -124,7 +122,6 @@ jobs:
                 
                 # Assetfinder
                 if [ -f ./results/assetfinder-results/assetfinder.txt ]; then
-                  echo "## Assetfinder ($(wc -l < ./results/assetfinder-results/assetfinder.txt) subdominios)" >> ./combined/all_results.txt
                   cat ./results/assetfinder-results/assetfinder.txt >> ./combined/all_results.txt
                   echo "" >> ./combined/all_results.txt
                 else
@@ -145,6 +142,7 @@ jobs:
                 echo "## 📈 Cantidad : $(wc -l < ./combined/all_results_sorted.txt)" >> $GITHUB_STEP_SUMMARY
                 cat ./combined/all_results_sorted.txt >> $GITHUB_STEP_SUMMARY
                 echo "" >> $GITHUB_STEP_SUMMARY
+                echo ""
                 echo "📁 **Resultados completos:**" >> $GITHUB_STEP_SUMMARY
                 echo "Descarga los artefactos desde este workflow." >> $GITHUB_STEP_SUMMARY
 
