@@ -2,7 +2,7 @@ name: Subdomains Detect Flow
 
 on:
   schedule:
-    - cron: '0 */5 * * *'  # Cada 5 horas
+    - cron: '*/5 * * * *'  # Cada 5 horas
   workflow_dispatch:        # Ejecución manual (opcional)
     inputs:
       domain:
