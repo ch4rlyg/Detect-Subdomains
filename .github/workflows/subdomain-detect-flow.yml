@@ -73,7 +73,7 @@ jobs:
                 name: assetfinder-results
                 path:   
                   /tmp/assetfinder.txt          
-    ProcessResult:
+    SendTelegram:
         runs-on: ubuntu-latest
         needs: [Subfinder, Findomain, Assetfinder]
         steps:
@@ -151,5 +151,5 @@ jobs:
                 echo >> ./combined/report.txt
                 cat ./combined/all_results_sorted.txt  >> ./combined/report.txt
                 curl -s -X POST "https://api.telegram.org/bot${{ secrets.TOKENTELEGRAM }}/sendMessage" \
-                     -F chat_id="${{ secrets.CHATIDTELEGRAM }}" \
+                     -d chat_id="${{ secrets.CHATIDTELEGRAM }}" \
                      -F document="@./combined/report.txt"
