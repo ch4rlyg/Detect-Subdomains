@@ -150,6 +150,6 @@ jobs:
                 echo "Total de subdominios $(wc -l ./combined/all_results_sorted.txt)" > ./combined/report.txt
                 echo >> ./combined/report.txt
                 cat ./combined/all_results_sorted.txt  >> ./combined/report.txt
-                curl -s -X POST "https://api.telegram.org/bot${{ secrets.TOKENTELEGRAM }}/sendMessage" \
-                     -d chat_id="${{ secrets.CHATIDTELEGRAM }}" \
+                curl -s -X POST "https://api.telegram.org/bot${{ secrets.TOKENTELEGRAM }}/sendDocument" \
+                     -F chat_id="${{ secrets.CHATIDTELEGRAM }}" \
                      -F document="@./combined/report.txt"
