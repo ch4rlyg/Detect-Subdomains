@@ -2,17 +2,17 @@ name: Subdomains Detect Flow
 
 on:
   schedule:
-    - cron: '*/5 * * * *'  # Cada 5 horas
+    - cron: '0 * * * *' 
   workflow_dispatch:        # Ejecución manual (opcional)
     inputs:
       domain:
         description: 'Dominio a escanear'
         required: true
-        default: 'ultraperu.com'
+        default: 'yape.com.pe'
         type: string
 
 env:
-  DOMAIN: ${{ github.event.inputs.domain || 'ultraperu.com' }}
+  DOMAIN: ${{ github.event.inputs.domain || 'yape.com.pe' }}
         
 jobs:
     Subfinder:
@@ -147,7 +147,7 @@ jobs:
 
             - name: Send Telegram Notification
               run: |
-                echo "Total de subdominios $(wc -l ./combined/all_results_sorted.txt)" > ./combined/report.txt
+                echo "Total de subdominios: $(cat ./combined/all_results_sorted.txt | wc -l)" > ./combined/report.txt
                 echo >> ./combined/report.txt
                 cat ./combined/all_results_sorted.txt  >> ./combined/report.txt
                 curl -s -X POST "https://api.telegram.org/bot${{ secrets.TOKENTELEGRAM }}/sendDocument" \
