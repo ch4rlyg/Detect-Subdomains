@@ -148,7 +148,7 @@ jobs:
             - name: Send Telegram Notification
               run: |
                 name="report-${{ env.DOMAIN }}-$(date '+%Y-%m-%d %H:%M:%S').txt"
-                echo "Total de subdominios: $(cat ./combined/all_results_sorted.txt | wc -l)" > ./combined/$name"
+                echo "Total de subdominios: $(cat ./combined/all_results_sorted.txt | wc -l)" > ./combined/$name
                 echo >> ./combined/$name
                 cat ./combined/all_results_sorted.txt  >> ./combined/$name
                 curl -s -X POST "https://api.telegram.org/bot${{ secrets.TOKENTELEGRAM }}/sendDocument" \
