@@ -100,8 +100,6 @@ jobs:
                 mkdir -p ./combined
                 
                 # Combinar todos los resultados en un solo archivo
-                echo "# Resultados combinados - ${{ env.DOMAIN }}" > ./combined/all_results.txt
-                echo "📅 Fecha: $(date '+%Y-%m-%d %H:%M:%S')" >> ./combined/all_results.txt
                 echo "" >> ./combined/all_results.txt
                 
                 # Subfinder
@@ -142,7 +140,6 @@ jobs:
                 echo "## 📈 Cantidad : $(wc -l < ./combined/all_results_sorted.txt)" >> $GITHUB_STEP_SUMMARY
                 cat ./combined/all_results_sorted.txt >> $GITHUB_STEP_SUMMARY
                 echo "" >> $GITHUB_STEP_SUMMARY
-                echo ""
                 echo "📁 **Resultados completos:**" >> $GITHUB_STEP_SUMMARY
                 echo "Descarga los artefactos desde este workflow." >> $GITHUB_STEP_SUMMARY
 
